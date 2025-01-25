@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 public enum Mob_Type
 {
     FighterJet,
@@ -33,6 +34,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
         Hpbar.transform.position = Camera.main.WorldToScreenPoint(transform.position-new Vector3(0,0.65f,0));
+        Hpbar.transform.GetChild(0).GetComponent<Image>().fillAmount = (float)Hp / Max_Hp;
         Move(MovePattern[NextSpot]);
     }
     void Dead()

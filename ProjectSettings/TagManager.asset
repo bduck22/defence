@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Canvas
   - Spot
+  - gamemaster
   layers:
   - Default
   - TransparentFX
