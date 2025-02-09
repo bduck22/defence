@@ -4,17 +4,18 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Canvas
   - Spot
-  - gamemaster
+  - End
+  - Tower
+  - Canvas
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Map
   - Water
   - UI
-  - 
+  - Minimap
   - 
   - 
   - 

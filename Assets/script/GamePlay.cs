@@ -8,6 +8,7 @@ public class GamePlay : MonoBehaviour
     public GameObject HpBar;
     void Start()
     {
+        GameManager.instance.StartGame();
         StartCoroutine(Delay());
     }
     void Update()
@@ -31,6 +32,7 @@ public class GamePlay : MonoBehaviour
     }
     void Summon()
     {
+        GameManager.instance.EnemyCount++;
         GameObject mob = Instantiate(FighterJet, transform.position, transform.rotation);
         mob.GetComponent<Enemy>().MovePattern = new int[] {0, 1, 2, 3, 4, 7};
         Instantiate(HpBar, mob.transform);

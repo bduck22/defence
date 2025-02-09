@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
         NextSpot= 0;
         Spot = GameObject.FindWithTag("Spot");
         Hp = Max_Hp;
-        Hpbar = transform.GetChild(0).gameObject;
+        Hpbar = transform.GetChild(1).gameObject;
         Hpbar.transform.SetParent(GameObject.FindWithTag("Canvas").transform);
     }
     void Update()
@@ -31,6 +31,8 @@ public class Enemy : MonoBehaviour
         if (Hp <= 0)
         {
             Destroy(Hpbar);
+            GameManager.instance.EnemyCount--;
+            GameManager.instance.Gold += 3 + ((int)Type + ((int)Type == 0 ? 0 : 1)) + (int)Type + ((int)Type > 1 ? (int)Type - 1 : 0);
             Destroy(gameObject);
         }
         Hpbar.transform.position = Camera.main.WorldToScreenPoint(transform.position-new Vector3(0,0.65f,0));
@@ -46,5 +48,14 @@ public class Enemy : MonoBehaviour
         Vector3 stopcheck = transform.position;
         transform.position = Vector2.MoveTowards(transform.position, this.Spot.transform.GetChild(Spot).position, Speed*Time.deltaTime);
         if (stopcheck == transform.position) if(NextSpot<MovePattern.Length-1)NextSpot++;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("End")) {
+            GameManager.instance.EnemyCount--;
+            GameManager.instance.Hp--;
+            Destroy(Hpbar);
+            Destroy(gameObject);
+        }
     }
 }
