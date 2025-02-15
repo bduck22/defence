@@ -33,9 +33,6 @@ public class TowerSeleter : MonoBehaviour
     {
         Spawning = true;
         tower = Instantiate(Tower, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.rotation);
-        tower.transform.GetChild(1).gameObject.SetActive(false);
-        tower.transform.GetChild(0).gameObject.SetActive(false);
-        tower.transform.GetChild(2).gameObject.SetActive(false);
         tower.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.8f);
     }
     public void TowerSelect(int select)

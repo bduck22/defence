@@ -11,6 +11,5 @@ public class bullet_move : MonoBehaviour
     void Update()
     {
         if(target)transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-        else Destroy(gameObject);
     }
 }

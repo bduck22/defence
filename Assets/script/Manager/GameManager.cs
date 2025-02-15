@@ -20,15 +20,17 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
     }
-    public void StartGame()
+    private void Update()
     {
-        StartCoroutine(Time());
-    }
-    IEnumerator Time()
-    {
-        yield return new WaitForSeconds(1);
-        NextWaveTime--;
-        StartCoroutine(Time());
+        NextWaveTime-=Time.deltaTime;
+        if (NextWaveTime < 0)
+        {
+            if (NowWave <= MaxWave)
+            {
+                NowWave++;
+                NextWaveTime = 180;
+            }
+        }
     }
 
     public int Stage;
@@ -39,7 +41,7 @@ public class GameManager : MonoBehaviour
     public int MaxWave;
     public int NowWave;
 
-    public int NextWaveTime;
+    public float NextWaveTime;
 
     public int EnemyCount;
 

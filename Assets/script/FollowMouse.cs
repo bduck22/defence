@@ -19,9 +19,11 @@ public class FollowMouse : MonoBehaviour
                 {
                     if(GameManager.instance.CanUseGold(((int)GameManager.instance.ST > 1 ? 1 : 0) * 10 + 10))
                     {
+                        GetComponent<Tower>().Type = (int)GameManager.instance.ST;
                         transform.GetChild(1).gameObject.SetActive(true);
                         transform.GetChild(0).gameObject.SetActive(true);
                         transform.GetChild(2).gameObject.SetActive(true);
+                        transform.GetChild(5).gameObject.SetActive(true);
                         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                         GetComponent<CircleCollider2D>().enabled = true;
                         GetComponent<Tower>().enabled = true;

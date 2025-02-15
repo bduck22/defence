@@ -8,6 +8,7 @@ TagManager:
   - End
   - Tower
   - Canvas
+  - Attack
   layers:
   - Default
   - TransparentFX

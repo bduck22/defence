@@ -9,10 +9,11 @@ public enum Mob_Type
 }
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private int Max_Hp;
+    public int Max_Hp;
     public int Hp;
-    [SerializeField] private Mob_Type Type;
-    [SerializeField] private float Speed;
+    public Mob_Type Type;
+    public float Speed;
+    public float DownedSpeed;
     public int[] MovePattern;
     [SerializeField] private int NextSpot;
     public GameObject Hpbar;
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        DownedSpeed = 0;
         NextSpot= 0;
         Spot = GameObject.FindWithTag("Spot");
         Hp = Max_Hp;
@@ -46,8 +48,12 @@ public class Enemy : MonoBehaviour
     void Move(int Spot)
     {
         Vector3 stopcheck = transform.position;
-        transform.position = Vector2.MoveTowards(transform.position, this.Spot.transform.GetChild(Spot).position, Speed*Time.deltaTime);
-        if (stopcheck == transform.position) if(NextSpot<MovePattern.Length-1)NextSpot++;
+        transform.position = Vector2.MoveTowards(transform.position, this.Spot.transform.GetChild(Spot).position, (Speed-DownedSpeed/100)*Time.deltaTime);
+        if (stopcheck == transform.position) if (NextSpot < MovePattern.Length - 1)
+            {
+                NextSpot++;
+                transform.eulerAngles = new Vector3(0, 0, Mathf.Round((Quaternion.FromToRotation(Vector2.left, transform.position - this.Spot.transform.GetChild(MovePattern[NextSpot]).position).eulerAngles.z+90) / 90) * 90);
+            }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -56,6 +62,10 @@ public class Enemy : MonoBehaviour
             GameManager.instance.Hp--;
             Destroy(Hpbar);
             Destroy(gameObject);
+        }
+        if (collision.gameObject.CompareTag("Attack"))
+        {
+            Hp -= (int)collision.transform.localScale.z;
         }
     }
 }

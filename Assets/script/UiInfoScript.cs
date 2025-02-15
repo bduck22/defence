@@ -27,7 +27,7 @@ public class UiInfoScript : MonoBehaviour
             case UiType.Wave: text.text = "WAVE : " + GameManager.instance.NowWave.ToString(",##0")+"/"+ GameManager.instance.MaxWave.ToString(",##0"); break;
             case UiType.Stage: text.text = RomaNumber(GameManager.instance.Stage, "STAGE "); Destroy(GetComponent<UiInfoScript>()); break;
             case UiType.EnemyCount: text.text = "ENEMY : " + GameManager.instance.EnemyCount.ToString(",##0"); break;
-            case UiType.Time: text.text = "NEXT WAVE " + (GameManager.instance.NextWaveTime/60).ToString("00 : ")+(GameManager.instance.NextWaveTime%60).ToString("00"); break;
+            case UiType.Time: text.text = "NEXT WAVE " + ((int)(GameManager.instance.NextWaveTime/60)).ToString("00 : ")+(((int)GameManager.instance.NextWaveTime%60)).ToString("00"); break;
         }
     }
     string RomaNumber(int number, string Number)
