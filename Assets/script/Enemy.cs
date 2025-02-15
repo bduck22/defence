@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
         if (stopcheck == transform.position) if (NextSpot < MovePattern.Length - 1)
             {
                 NextSpot++;
-                transform.eulerAngles = new Vector3(0, 0, Mathf.Round((Quaternion.FromToRotation(Vector2.left, transform.position - this.Spot.transform.GetChild(MovePattern[NextSpot]).position).eulerAngles.z+90) / 90) * 90);
+                transform.eulerAngles = new Vector3(0, 0, Mathf.Round((Quaternion.FromToRotation(Vector2.up, transform.position - this.Spot.transform.GetChild(MovePattern[NextSpot]).position).eulerAngles.z+180) / 90) * 90);
             }
     }
     private void OnTriggerEnter2D(Collider2D collision)
