@@ -1625,6 +1625,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FighterJet: {fileID: 4828974291703714386, guid: 3cee205180f09e042ab2e21794aa7353, type: 3}
   HpBar: {fileID: 451102155473209520, guid: 6e13cf44b2015cc4abe650020be20ca4, type: 3}
+  Jet: {fileID: -9028887643529156915, guid: d68d34c0d3d5e2d4f9669b84ab3cd52e, type: 3}
+  Ceptor: {fileID: -5593381149061054219, guid: 13ca43874bdb9114490f5a81a03ef3e7, type: 3}
+  Transport: {fileID: -6866560432202306918, guid: b207d5c6a8fb07244a9ea0f3ddb0a570, type: 3}
+  Bomber: {fileID: 5774831396259181638, guid: 123f6bda034966d49a8c37aff7c986bd, type: 3}
 --- !u!1 &355030769
 GameObject:
   m_ObjectHideFlags: 0
@@ -10569,7 +10573,7 @@ MonoBehaviour:
   Hp: 10
   MaxWave: 10
   NowWave: 1
-  NextWaveTime: 120
+  NextWaveTime: 60
   EnemyCount: 0
   ST: 0
   HoverObject: {fileID: 0}

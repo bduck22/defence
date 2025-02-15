@@ -7,6 +7,11 @@ public class GamePlay : MonoBehaviour
     public GameObject FighterJet;
 
     public GameObject HpBar;
+
+    [SerializeField] private Sprite Jet;
+    [SerializeField] private Sprite Ceptor;
+    [SerializeField] private Sprite Transport;
+    [SerializeField] private Sprite Bomber;
     void Start()
     {
         Enemy = new int[2][][];
@@ -63,26 +68,27 @@ public class GamePlay : MonoBehaviour
     int[] Jet2 = { 0, 1, 6, 5, 4, 7 };
     int[] Ceptor1 = { 0, 1, 2, 3, 4, 5, 6, 2, 3, 4, 7 };
     int[] Ceptor2 = { 0, 1, 6, 5, 4, 3, 2, 6, 5, 4, 7 };
-    int[] Transport = { 0, 1, 7 };
+    int[] Transport1 = { 0, 1, 7 };
     int[] Bomber1 = { 0, 1, 2, 6, 2, 3, 4, 7 };
     int[] Bomber2 = { 0, 1, 6, 2, 6, 5, 4, 7 };
     void summon(int Type)
     {
         GameManager.instance.EnemyCount++;
         GameObject mob = Instantiate(FighterJet, transform.position, transform.rotation);
+        
         int[] seletedPattern = new int[] { };
         switch (Type)
         {
-            case 1: seletedPattern = Jet1;mob.GetComponent<Enemy>().Max_Hp = 5; mob.GetComponent<Enemy>().Type = Mob_Type.FighterJet; break;
-            case 2: seletedPattern = Jet2; mob.GetComponent<Enemy>().Max_Hp = 5; mob.GetComponent<Enemy>().Type = Mob_Type.FighterJet; break;
+            case 1: seletedPattern = Jet1;mob.GetComponent<Enemy>().Max_Hp = 5; mob.GetComponent<Enemy>().Type = Mob_Type.FighterJet; mob.GetComponent<SpriteRenderer>().sprite = Jet; break;
+            case 2: seletedPattern = Jet2; mob.GetComponent<Enemy>().Max_Hp = 5; mob.GetComponent<Enemy>().Type = Mob_Type.FighterJet; mob.GetComponent<SpriteRenderer>().sprite = Jet; break;
 
-            case 3: seletedPattern = Ceptor1; mob.GetComponent<Enemy>().Max_Hp = 15; mob.GetComponent<Enemy>().Type = Mob_Type.Interceptor; break;
-            case 4: seletedPattern = Ceptor2; mob.GetComponent<Enemy>().Max_Hp = 15; mob.GetComponent<Enemy>().Type = Mob_Type.Interceptor; break;
+            case 3: seletedPattern = Ceptor1; mob.GetComponent<Enemy>().Max_Hp = 15; mob.GetComponent<Enemy>().Type = Mob_Type.Interceptor; mob.GetComponent<SpriteRenderer>().sprite = Ceptor; break;
+            case 4: seletedPattern = Ceptor2; mob.GetComponent<Enemy>().Max_Hp = 15; mob.GetComponent<Enemy>().Type = Mob_Type.Interceptor; mob.GetComponent<SpriteRenderer>().sprite = Ceptor; break;
 
-            case 5: seletedPattern = Transport; mob.GetComponent<Enemy>().Max_Hp = 10; mob.GetComponent<Enemy>().Type = Mob_Type.TransportAircraft; break;
+            case 5: seletedPattern = Transport1; mob.GetComponent<Enemy>().Max_Hp = 10; mob.GetComponent<Enemy>().Type = Mob_Type.TransportAircraft; mob.GetComponent<SpriteRenderer>().sprite = Transport; break;
 
-            case 6: seletedPattern = Bomber1; mob.GetComponent<Enemy>().Max_Hp = 15; mob.GetComponent<Enemy>().Type = Mob_Type.Bomber; break;
-            case 7: seletedPattern = Bomber2; mob.GetComponent<Enemy>().Max_Hp = 15; mob.GetComponent<Enemy>().Type = Mob_Type.Bomber; break;
+            case 6: seletedPattern = Bomber1; mob.GetComponent<Enemy>().Max_Hp = 15; mob.GetComponent<Enemy>().Type = Mob_Type.Bomber; mob.GetComponent<SpriteRenderer>().sprite = Bomber; break;
+            case 7: seletedPattern = Bomber2; mob.GetComponent<Enemy>().Max_Hp = 15; mob.GetComponent<Enemy>().Type = Mob_Type.Bomber; mob.GetComponent<SpriteRenderer>().sprite = Bomber; break;
         }
         mob.GetComponent<Enemy>().MovePattern = seletedPattern;
         Instantiate(HpBar, mob.transform);

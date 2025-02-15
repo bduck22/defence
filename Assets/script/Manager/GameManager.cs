@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
             if (NowWave <= MaxWave)
             {
                 NowWave++;
-                NextWaveTime = 180;
+                NextWaveTime = 60;
             }
         }
     }
